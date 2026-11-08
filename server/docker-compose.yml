@@ -1,0 +1,27 @@
+services:
+  speech-to-text-asr:
+    build:
+      context: .
+      args:
+        http_proxy: ${http_proxy:-}
+        https_proxy: ${https_proxy:-}
+        no_proxy: ${no_proxy:-}
+    image: speech-to-text-asr:latest
+    container_name: speech-to-text-asr
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:17495:17495"
+    devices:
+      # One GPU render node. Pick the card with free memory (Qwen3-ASR 1.7B bf16 needs ~5 GB).
+      - /dev/dri/renderD128:/dev/dri/renderD128
+    group_add:
+      - "992"   # host render group id (getent group render)
+    environment:
+      http_proxy: ${http_proxy:-}
+      https_proxy: ${https_proxy:-}
+      no_proxy: ${no_proxy:-}
+    volumes:
+      - speech-to-text-models:/models
+
+volumes:
+  speech-to-text-models:

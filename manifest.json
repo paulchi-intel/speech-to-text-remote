@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Speech-to-Text Remote",
+  "version": "1.0.0",
+  "description": "Speech-to-text powered by Qwen3-ASR 1.7B running on a remote GPU server. Drop an audio file and get the transcript.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "sidePanel",
+    "clipboardWrite",
+    "downloads",
+    "windows"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*",
+    "http://localhost/*"
+  ],
+  "optional_host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_title": "Speech-to-Text Remote - Qwen3-ASR"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}

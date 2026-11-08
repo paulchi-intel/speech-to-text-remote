@@ -1,0 +1,4 @@
+qwen-asr
+soundfile
+numpy
+opencc
